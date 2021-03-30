@@ -27,3 +27,8 @@ variable "root_block_device_volume_type" {
   description = "Volume type for root block volume."
   default = "gp2"
 }
+
+variable "key_name" {
+  description = "Key name for newly launched EC2 instances from LC."
+  default = "ec2-mudmuseum_com"
+}
