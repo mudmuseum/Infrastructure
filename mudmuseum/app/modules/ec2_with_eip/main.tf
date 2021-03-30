@@ -31,3 +31,16 @@ resource "aws_instance" "mudmuseum_com" {
 resource "aws_eip" "public_ip_mudmuseum_com" {
   instance = aws_instance.mudmuseum_com.id
 }
+
+resource "aws_route53_zone" "route53_zone_mudmuseum_com" {
+  name = var.route53_zone_name
+}
+
+resource "aws_route53_record" "route53_arecord_mud_mudmuseum_com" {
+  zone_id         = aws_route53_zone.route53_zone_mudmuseum_com.zone_id
+  allow_overwrite = true
+  name            = var.route53_record_name
+  type            = var.route53_record_type
+  ttl             = var.route53_record_ttl
+  records         = [aws_eip.public_ip_mudmuseum_com.public_ip]
+}
