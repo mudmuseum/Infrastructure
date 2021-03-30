@@ -1,4 +1,4 @@
-resource "aws_security_group" "security-group" {
+resource "aws_security_group" "security_group" {
 
   name = var.security_group_name
 
