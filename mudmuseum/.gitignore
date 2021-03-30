@@ -2,6 +2,9 @@
 Terrafile
 config/terraform/provider.tf
 
+# Ignore temporary editing files
+**/*.swp
+
 # Terraform files
 .terraform
 terraform.tfstate
