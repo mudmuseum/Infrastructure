@@ -46,7 +46,21 @@ variable "key_name" {
   default     = "ec2-mudmuseum_com"
 }
 
-variable "security_group_ids" {
+variable "security_group_id" {
   description = "The list of security group IDs to associate to the EC2 instance."
-  type        = list
+}
+
+variable "desired_capacity" {
+  description = "Desired capacity for the ASG."
+  default     = "0"
+}
+
+variable "min_size" {
+  description = "Desired minimum size for the ASG."
+  default     = "0"
+}
+
+variable "max_size" {
+  description = "Desired maximum size for the ASG."
+  default     = "0"
 }

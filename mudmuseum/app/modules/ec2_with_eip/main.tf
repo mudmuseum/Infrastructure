@@ -19,7 +19,7 @@ resource "aws_instance" "mudmuseum_com" {
   instance_type               = var.instance_type
   associate_public_ip_address = var.associate_public_ip_address
   key_name                    = var.key_name
-  security_groups             = var.security_group_ids
+  security_groups             = var.security_group_id
 
   root_block_device {
     volume_size = var.root_block_device_volume_size
@@ -33,7 +33,8 @@ resource "aws_eip" "public_ip_mudmuseum_com" {
 }
 
 resource "aws_route53_zone" "route53_zone_mudmuseum_com" {
-  name = var.route53_zone_name
+  name          = var.route53_zone_name
+  force_destroy = false
 }
 
 resource "aws_route53_record" "route53_arecord_mud_mudmuseum_com" {

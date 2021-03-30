@@ -22,9 +22,8 @@ variable "key_name" {
   description = "The name of the public key for accessing the EC2 instance."
 }
 
-variable "security_group_ids" {
+variable "security_group_id" {
   description = "The list of security group IDs to associate to the EC2 instance."
-  type        = list
 }
 
 variable "route53_zone_name" {

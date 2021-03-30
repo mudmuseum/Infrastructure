@@ -14,5 +14,9 @@ resource "aws_s3_bucket" "s3-bucket-logging-sse" {
     }
   }
 
+  lifecycle {
+    prevent_destroy = true
+  }
+
   force_destroy = var.force_destroy
 }
