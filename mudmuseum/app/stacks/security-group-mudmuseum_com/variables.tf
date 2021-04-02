@@ -11,3 +11,7 @@ variable "ec2_ingress_ports" {
     "9000" = ["0.0.0.0/0"]
   }
 }
+
+variable "vpc_id" {
+  description = "The VPC ID."
+}

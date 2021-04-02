@@ -29,6 +29,13 @@ variable "root_block_device_volume_type" {
 }
 
 variable "key_name" {
-  description = "Key name for newly launched EC2 instances from LC."
-  default = "ec2-mudmuseum_com"
+  description = "Public SSH-Key to log into the EC2 instance."
+}
+
+variable "security_group_id" {
+  description = "Security Group ID to associate."
+}
+
+variable "subnet_id" {
+  description = "Subnet ID to place the EC2 instance into."
 }
