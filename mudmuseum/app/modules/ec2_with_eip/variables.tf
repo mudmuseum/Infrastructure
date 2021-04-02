@@ -41,3 +41,12 @@ variable "route53_record_type" {
 variable "route53_record_ttl" {
   description = "Route53 record TTL."
 }
+
+variable "subnet_id" {
+  description = "Subnet ID for the EC2 instance."
+}
+
+variable "availability_zone" {
+  description = "Availability Zone for the EC2 instance."
+  default     = "us-east-1a"
+}

@@ -4,5 +4,9 @@ variable "ec2_ingress_ports" {
 }
 
 variable "security_group_name" {
-  description = "The name of the security group."
+  description = "The name of the Security Group."
+}
+
+variable "vpc_id" {
+  description = "The VPC ID for the Security Group."
 }
