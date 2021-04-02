@@ -5,7 +5,7 @@ module "ec2_1_mudmuseum_com" {
   root_block_device_volume_size = var.root_block_device_volume_size
   root_block_device_volume_type = var.root_block_device_volume_type
   key_name                      = <%= output('key-pair-ec2-mudmuseum_com.key_name') %>
-  security_group_id             = [<%= output('security-group-mudmuseum_com.id') %>]
+  security_group_id             = <%= output('security-group-mudmuseum_com.id') %>
 
   route53_zone_name             = var.route53_zone_name
 
