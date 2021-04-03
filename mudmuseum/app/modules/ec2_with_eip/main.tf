@@ -36,7 +36,10 @@ resource "aws_eip" "public_ip_mudmuseum_com" {
 
 resource "aws_route53_zone" "route53_zone_mudmuseum_com" {
   name          = var.route53_zone_name
-  force_destroy = false
+
+  lifecycle {
+    prevent_destroy = true
+  }
 }
 
 resource "aws_route53_record" "route53_arecord_mud_mudmuseum_com" {
