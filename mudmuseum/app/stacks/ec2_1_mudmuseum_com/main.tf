@@ -7,6 +7,7 @@ module "ec2_1_mudmuseum_com" {
   key_name                      = var.key_name
   security_group_id             = var.security_group_id
   subnet_id                     = var.subnet_id
+  iam_instance_profile          = var.iam_instance_profile
 
   route53_zone_name             = var.route53_zone_name
 

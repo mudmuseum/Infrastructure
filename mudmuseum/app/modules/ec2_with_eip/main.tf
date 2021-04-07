@@ -22,6 +22,7 @@ resource "aws_instance" "mudmuseum_com" {
   vpc_security_group_ids      = [var.security_group_id]
   subnet_id                   = var.subnet_id
   availability_zone           = var.availability_zone
+  iam_instance_profile        = var.iam_instance_profile
 
   root_block_device {
     volume_size = var.root_block_device_volume_size

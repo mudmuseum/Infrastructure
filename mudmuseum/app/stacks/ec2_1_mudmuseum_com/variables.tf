@@ -44,3 +44,7 @@ variable "security_group_id" {
 variable "subnet_id" {
   description = "Subnet ID to place the EC2 instance into."
 }
+
+variable "iam_instance_profile" {
+  description = "IAM Instance Profile for the EC2 instance."
+}

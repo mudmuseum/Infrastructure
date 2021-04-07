@@ -50,3 +50,8 @@ variable "availability_zone" {
   description = "Availability Zone for the EC2 instance."
   default     = "us-east-1a"
 }
+
+variable "iam_instance_profile" {
+  description = "Instance Profile for the EC2 instance."
+  default     = ""
+}
