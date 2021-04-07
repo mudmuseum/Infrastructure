@@ -1,5 +1,7 @@
 resource "aws_ecr_repository" "ecr_repository" {
-  name                 = var.name
+  count                = length(var.names)
+
+  name                 = var.names[count.index]
   image_tag_mutability = "IMMUTABLE"
 
   encryption_configuration {

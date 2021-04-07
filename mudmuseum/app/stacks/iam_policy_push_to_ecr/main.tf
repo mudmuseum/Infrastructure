@@ -19,11 +19,11 @@ data "aws_iam_policy_document" "iam_policy_document_push_to_ecr" {
                     "ecr:InitiateLayerUpload",
                     "ecr:BatchCheckLayerAvailability" ]
 
-    resources   = [ "arn:aws:ecr:us-east-1:${data.aws_caller_identity.current.account_id}:repository/mudmuseum" ]
+    resources   = [ "arn:aws:ecr:us-east-1:${data.aws_caller_identity.current.account_id}:repository/*" ]
   }
   statement {
     actions     = [ "ecr:GetAuthorizationToken" ]
-    resources   = [ "arn:aws:ecr:us-east-1:${data.aws_caller_identity.current.account_id}:repository/mudmuseum" ]
+    resources   = [ "*" ]
   }
 }
 
