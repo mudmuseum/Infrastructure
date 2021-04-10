@@ -1,6 +1,6 @@
 variable "instance_type" {
   description = "The instance type."
-  default     = "t4g.micro"
+  default     = "t3a.micro"
 }
 
 variable "root_block_device_volume_size" {
