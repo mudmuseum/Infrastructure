@@ -33,17 +33,17 @@ variable "route53_record_ttl" {
   default     = "3600"
 }
 
-variable "key_name" {
-  description = "Public SSH-Key to log into the EC2 instance."
-}
+# variable "key_name" {
+#   description = "Public SSH-Key to log into the EC2 instance."
+# }
 
-variable "security_group_id" {
-  description = "Security Group ID to associate."
-}
+# variable "security_group_id" {
+#   description = "Security Group ID to associate."
+# }
 
-variable "subnet_id" {
-  description = "Subnet ID to place the EC2 instance into."
-}
+# variable "subnet_id" {
+#   description = "Subnet ID to place the EC2 instance into."
+# }
 
 variable "iam_instance_profile" {
   description = "IAM Instance Profile for the EC2 instance."
