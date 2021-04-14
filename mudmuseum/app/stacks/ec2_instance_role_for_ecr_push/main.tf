@@ -18,11 +18,15 @@ data "aws_iam_policy_document" "iam_policy_document_push_to_ecr" {
                     "ecr:DescribeRepositories",
                     "ecr:InitiateLayerUpload",
                     "ecr:BatchCheckLayerAvailability" ]
-    resources   = [ "arn:aws:ecr:us-east-1:${data.aws_caller_identity.current.account_id}:repository/mudmuseum" ]
+    resources   = [ "arn:aws:ecr:us-east-1:${data.aws_caller_identity.current.account_id}:repository/*" ]
+  }
+  statement {
+    actions     = [ "s3:PutObject" ]
+    resources   = [ "arn:aws:s3:::mudmuseum-backups/*" ]
   }
   statement {
     actions     = [ "ecr:GetAuthorizationToken" ]
-    resources   = [ "arn:aws:ecr:us-east-1:${data.aws_caller_identity.current.account_id}:repository/mudmuseum" ]
+    resources   = [ "*" ]
   }
 }
 
@@ -38,7 +42,7 @@ data "aws_iam_policy_document" "iam_policy_document_assume_role" {
 }
 
 module "iam_policy_push_to_ecr" {
-  source      = "../../modules/iam_policy"
+  source      = "github.com/mudmuseum/terraform-modules.git//modules/iam_policy?ref=v0.1.8"
 
   name        = "ECR_Push_Images"
   description = "Allows pushing images"
@@ -46,21 +50,21 @@ module "iam_policy_push_to_ecr" {
 }
 
 module "iam_role" {
-  source             = "../../modules/iam_role"
+  source             = "github.com/mudmuseum/terraform-modules.git//modules/iam_role?ref=v0.1.8"
 
   role_name          = "ECR_Push_Images_Instance_Role"
   assume_role_policy = data.aws_iam_policy_document.iam_policy_document_assume_role.json
 }
 
 module "ec2_instance_profile" {
-  source       = "../../modules/iam_instance_profile"
+  source       = "github.com/mudmuseum/terraform-modules.git//modules/iam_instance_profile?ref=v0.1.8"
 
   profile_name = "ECR_Push_Images_Instance_Profile"
   role_name    = module.iam_role.role_name
 }
 
 module "iam_role_policy_attachment" {
-  source       = "../../modules/iam_role_policy_attachment"
+  source       = "github.com/mudmuseum/terraform-modules.git//modules/iam_role_policy_attachment?ref=v0.1.8"
 
   role_name    = module.iam_role.role_name
   policy_arn   = module.iam_policy_push_to_ecr.policy_arn
