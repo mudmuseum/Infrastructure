@@ -1,3 +1,12 @@
+# Define the common tags for all resources
+locals {
+  tags = {
+    "cost-center"    = "mudmuseum"
+    "mm:project"     = "mud host"
+    "mm:environment" = "stable"
+  }
+}
+
 ################################################################
 #                                                              #
 # Terraform Remote State from Persistent Stacks Repository     #
@@ -176,7 +185,7 @@ module "iam_role_policy_attachment" {
 ################
 
 module "ec2_1_mudmuseum_com" {
-  source = "github.com/mudmuseum/terraform-modules.git//modules/ec2_instance?ref=v0.1.5"
+  source = "github.com/mudmuseum/terraform-modules.git//modules/ec2_instance?ref=v0.1.9"
 
   ami                           = data.aws_ami.amazon_linux_2.id
   instance_type                 = var.instance_type
@@ -186,6 +195,8 @@ module "ec2_1_mudmuseum_com" {
   security_group_id             = data.terraform_remote_state.security_group_mudmuseum.outputs.id
   subnet_id                     = data.terraform_remote_state.vpc_base_infrastructure_mudmuseum.outputs.public_subnet_id
   iam_instance_profile          = module.ec2_instance_profile.profile_name
+
+  tags                          = local.tags
 }
 
 ###################################################
